@@ -142,7 +142,11 @@ final class HBHTTPServerHandler: ChannelDuplexHandler, RemovableChannelHandler {
                 response = successfulResponse
             }
             if httpVersion.major == 1 {
-                response.head.headers.replaceOrAdd(name: "connection", value: keepAlive ? "keep-alive" : "close")
+                // Make sure the response has a keep-alive header
+                // Don't force keep-alive if response requested to close connection
+                if !keepAlive || response.head.isKeepAlive {
+                    response.head.headers.replaceOrAdd(name: "connection", value: keepAlive ? "keep-alive" : "close")
+                }
             }
             // if we are already running inside the context eventloop don't use `EventLoop.execute`
             if context.eventLoop.inEventLoop {
