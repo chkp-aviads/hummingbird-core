@@ -48,6 +48,8 @@ extension HBHTTPServer {
         public let withPipeliningAssistance: Bool
         /// Idle state handler setup.
         public let idleTimeoutConfiguration: IdleStateHandlerConfiguration?
+        /// Force requests and responses to use Connection: close and not keep-alive to reduce opened connections
+        public let forceNoKeepAlive: Bool
         #if canImport(Network)
         /// TLS options for NIO Transport services
         public let tlsOptions: TSTLSOptions
@@ -71,7 +73,8 @@ extension HBHTTPServer {
             reuseAddress: Bool = true,
             tcpNoDelay: Bool = true,
             withPipeliningAssistance: Bool = true,
-            idleTimeoutConfiguration: IdleStateHandlerConfiguration? = nil
+            idleTimeoutConfiguration: IdleStateHandlerConfiguration? = nil,
+            forceNoKeepAlive: Bool = false
         ) {
             self.address = address
             self.serverName = serverName
@@ -82,6 +85,7 @@ extension HBHTTPServer {
             self.tcpNoDelay = tcpNoDelay
             self.withPipeliningAssistance = withPipeliningAssistance
             self.idleTimeoutConfiguration = idleTimeoutConfiguration
+            self.forceNoKeepAlive = forceNoKeepAlive
             #if canImport(Network)
             self.tlsOptions = .none
             #endif
@@ -105,6 +109,7 @@ extension HBHTTPServer {
             reuseAddress: Bool = true,
             withPipeliningAssistance: Bool = true,
             idleTimeoutConfiguration: IdleStateHandlerConfiguration? = nil,
+            forceNoKeepAlive: Bool = false,
             tlsOptions: TSTLSOptions
         ) {
             self.address = address
@@ -116,6 +121,7 @@ extension HBHTTPServer {
             self.tcpNoDelay = true
             self.withPipeliningAssistance = withPipeliningAssistance
             self.idleTimeoutConfiguration = idleTimeoutConfiguration
+            self.forceNoKeepAlive = forceNoKeepAlive
             self.tlsOptions = tlsOptions
         }
         #endif

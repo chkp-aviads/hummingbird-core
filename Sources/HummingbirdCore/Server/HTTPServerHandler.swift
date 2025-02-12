@@ -47,7 +47,7 @@ final class HBHTTPServerHandler: ChannelDuplexHandler, RemovableChannelHandler {
         self.responder = responder
         self.configuration = configuration
         self.requestsInProgress = 0
-        self.closeAfterResponseWritten = false
+        self.closeAfterResponseWritten = configuration.forceNoKeepAlive
         self.propagatedError = nil
         self.state = .idle
     }
