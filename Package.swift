@@ -14,11 +14,11 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-log.git", from: "1.4.0"),
-        .package(url: "https://github.com/chkp-aviads/swift-nio.git", branch: "main"),
-        .package(url: "https://github.com/chkp-aviads/swift-nio-extras.git", branch: "main"),
-        .package(url: "https://github.com/chkp-aviads/swift-nio-http2.git", branch: "main"),
-        .package(url: "https://github.com/chkp-aviads/swift-nio-ssl.git", branch: "main"),
-        .package(url: "https://github.com/chkp-aviads/swift-nio-transport-services.git", branch: "main"),
+        .package(url: "https://github.com/chkp-aviads/swift-nio.git", from: "2.30.0"),
+        .package(url: "https://github.com/chkp-aviads/swift-nio-extras.git", from: "1.25.1"),
+        .package(url: "https://github.com/chkp-aviads/swift-nio-http2.git", from: "1.35.1"),
+        .package(url: "https://github.com/chkp-aviads/swift-nio-ssl.git", from: "2.30.0"),
+        .package(url: "https://github.com/chkp-aviads/swift-nio-transport-services.git",from: "1.23.2"),
     ],
     targets: [
         .target(name: "HummingbirdCore", dependencies: [
